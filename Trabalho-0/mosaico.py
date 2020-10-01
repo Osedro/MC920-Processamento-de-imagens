@@ -1,13 +1,17 @@
 import cv2 as cv
 import numpy as np
+import sys
 
-imgpath = "img/baboon.png"
-img = cv.imread(imgpath)
+imgname = sys.argv[1]
+fracao = int(sys.argv[2])
+imgpath = "img/" + imgname
+
+
 try:
+    img = cv.imread(imgpath)
     newimg = img.copy()
 
     mosaico = []
-    fracao = 4                         
     tam = int(len(img)/fracao)
 
     for y in range(fracao):
@@ -20,7 +24,10 @@ try:
         for x in range(fracao):
             newimg[y*tam:y*tam+tam,x*tam:x*tam+tam] = mosaico[y*fracao+x]       # Mosaico 
         
-    cv.imwrite("resultados/baboon-mosaico-random-"+str(fracao)+"x"+str(fracao)+".png",newimg)
+    respath = "resultados/mosaicos/mosaico-" + str(fracao) + "x" + str(fracao) + "-" + imgname
+    cv.imwrite(respath,newimg)
+
+    print("Resultado salvo em:",respath)
 
     cv.imshow("Original",img)   
     cv.imshow("Mosaico "+str(fracao)+"x"+str(fracao),newimg)

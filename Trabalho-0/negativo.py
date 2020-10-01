@@ -1,13 +1,19 @@
 import cv2 as cv
 import numpy as np
+import sys
 
-imgpath = "img/baboon.png"
+imgname = sys.argv[1]
+imgpath = "img/" + imgname
+
 try:
     img = cv.imread(imgpath)
 
     negimg = (255-img).astype(np.uint8)    # Negativo
 
-    cv.imwrite("resultados/baboon-negativo.png",negimg)
+    respath = "resultados/negativos/negativo-" + imgname
+    cv.imwrite(respath,negimg)
+
+    print("Resultado salvo em:",respath)
 
     cv.imshow("Original",img)
     cv.imshow("Negativa",negimg)

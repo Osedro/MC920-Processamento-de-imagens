@@ -1,30 +1,34 @@
 import cv2 as cv
 import numpy as np
+import sys
 
-imgpathA = "img/baboon.png"
-imgpathB = "img/city.png"
-imgA = cv.imread(imgpathA)
-imgB = cv.imread(imgpathB)
-try:    
-    cv.imshow("Imagem A",imgA)   
-    cv.imshow("Imagem B",imgB) 
+imgnameA = sys.argv[1]
+imgnameB = sys.argv[2]
 
-    razao = 0.25
-    newimg1 = (razao*imgA+(1-razao)*imgB).astype(np.uint8) 
-    cv.imshow("Razao " + str(razao),newimg1)
-    cv.imwrite("resultados/baboon+city-"+str(razao)+".png",newimg1)
+imgpathA = "img/" + imgnameA
+imgpathB = "img/" + imgnameB
 
-    razao = 0.50
-    newimg2 = (razao*imgA+(1-razao)*imgB).astype(np.uint8) 
-    cv.imshow("Razao " + str(razao),newimg2)
-    cv.imwrite("resultados/baboon+city-"+str(razao)+".png",newimg2)
+peso = float(sys.argv[3])
 
-    razao = 0.75
-    newimg3 = (razao*imgA+(1-razao)*imgB).astype(np.uint8) 
-    cv.imshow("Razao " + str(razao),newimg3)
-    cv.imwrite("resultados/baboon+city-"+str(razao)+".png",newimg3)
+if peso > 1 or peso < 0:
+    print("Valor de peso fora do intervalo [0,1]")
+else:
+    try:    
+        imgA = cv.imread(imgpathA)
+        imgB = cv.imread(imgpathB)
 
-    cv.waitKey(0)
-    cv.destroyAllWindows()
-except:
-    print("Imagens nao encontradas")
+        cv.imshow("Imagem A",imgA)   
+        cv.imshow("Imagem B",imgB) 
+
+        newimg1 = (peso*imgA+(1-peso)*imgB).astype(np.uint8) 
+        cv.imshow("Peso " + str(peso),newimg1)
+
+        respath = "resultados/combinacoes/combinacao-"+ str(peso) + "-" + imgnameA.split(".")[0] + "-" + imgnameB
+        cv.imwrite(respath,newimg1)
+
+        print("Resultado salvo em:",respath)
+
+        cv.waitKey(0)
+        cv.destroyAllWindows()
+    except:
+        print("Imagens " + imgnameA + " e " + imgnameB + " nao encontradas")

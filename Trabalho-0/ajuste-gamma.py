@@ -1,42 +1,25 @@
 import cv2 as cv
 import numpy as np
+import sys
 
-imgpath = "img/butterfly.png"
-img = cv.imread(imgpath)
+imgname = sys.argv[1]
+gamma = float(sys.argv[2])
+imgpath = "img/" + imgname
+
 try:
+    img = cv.imread(imgpath)
 
-    #gamma = float(input())                  # Correção gamma escolhida pelo usuario
-    
-    # Gamma 1.5
-    gamma = 1.5
     aux = img/255
     aux = aux**(1/gamma)
     newimg = (aux*255).astype(np.uint8)     # Correção gamma 
 
-    cv.imwrite("resultados/butterfly-gamma-"+str(gamma)+".png",newimg)
+    respath = "resultados/correcao-gamma/gamma-" + str(gamma) + "-" + imgname
+    cv.imwrite(respath,newimg)
 
     cv.imshow("Original",img)   
     cv.imshow("Correção gamma " + str(gamma),newimg)
-    
-    # Gamma 2.5
-    gamma = 2.5
-    aux = img/255
-    aux = aux**(1/gamma)
-    newimg = (aux*255).astype(np.uint8)     # Correção gamma 
 
-    cv.imwrite("resultados/butterfly-gamma-"+str(gamma)+".png",newimg)
-
-    cv.imshow("Correção gamma " + str(gamma),newimg)
-
-    # Gamma 3.5
-    gamma = 3.5
-    aux = img/255
-    aux = aux**(1/gamma)
-    newimg = (aux*255).astype(np.uint8)     # Correção gamma 
-
-    cv.imwrite("resultados/butterfly-gamma-"+str(gamma)+".png",newimg)
-
-    cv.imshow("Correção gamma " + str(gamma),newimg)
+    print("Resultado salvo em:",respath)
     
     cv.waitKey(0)
     cv.destroyAllWindows()

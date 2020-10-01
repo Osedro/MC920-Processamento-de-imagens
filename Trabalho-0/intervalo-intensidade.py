@@ -1,15 +1,22 @@
 import cv2 as cv
 import numpy as np
+import sys
 
-imgpath = "img/seagull.png"
-img = cv.imread(imgpath)
+imgname = sys.argv[1]
+imgpath = "img/" + imgname
+
 try:
+    img = cv.imread(imgpath)
+
     newimg = np.uint8(100) + ((img/255)*100).astype(np.uint8)     # Intervalo de intensidades convertido para [100,200]
 
-    cv.imwrite("resultados/seagul-intervalo.png",newimg)
+    respath = "resultados/intervalo-de-intensidades-[100,200]/[100,200]-"+imgname
+    cv.imwrite(respath,newimg)
+
+    print("Resultado salvo em:",respath)
 
     cv.imshow("Original",img)
-    cv.imshow("Intervalo de intensidade alterado",newimg)
+    cv.imshow("Intervalo de intensidade [100,200]",newimg)
     cv.waitKey(0)
     cv.destroyAllWindows()
 except:

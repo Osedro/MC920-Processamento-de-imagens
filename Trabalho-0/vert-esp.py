@@ -1,13 +1,19 @@
 import cv2 as cv
 import numpy as np
+import sys
 
-imgpath = "img/house.png"
+imgname = sys.argv[1]
+imgpath = "img/" + imgname
+
 try:
     img = cv.imread(imgpath)
 
     newimg = np.flip(img,axis=0)       # Espelhamento vertical
 
-    cv.imwrite("resultados/house-espelhada-vertical.png",newimg)
+    respath = "resultados/espelhadas-verticalmente/espelhada-"+imgname
+    cv.imwrite(respath,newimg)
+
+    print("Resultado salvo em:",respath)
 
     cv.imshow("Original",img)
     cv.imshow("Espelhada",newimg)

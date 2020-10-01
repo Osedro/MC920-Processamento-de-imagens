@@ -1,19 +1,24 @@
 import cv2 as cv
 import numpy as np
+import sys
 
-imgpath = "img/city.png"
-img = cv.imread(imgpath)
+imgname = sys.argv[1]
+imgpath = "img/" + imgname
 
 try:
+
+    img = cv.imread(imgpath)
     cv.imshow("Original",img) 
 
     for bit in range(8):
         newimg = (((img/(2**bit))%2)*255).astype(np.uint8)      # Extração do plano de bits
 
-        cv.imwrite("resultados/city-bit-"+str(bit)+".png",newimg)
-
+        respath = "resultados/planos-de-bits/bit-" + str(bit)+ "-" + imgname
+        cv.imwrite(respath,newimg)
         
-        cv.imshow("Plane de bit " + str(bit),newimg)
+        print("Resultado salvo em:",respath)
+        
+        cv.imshow("Plano de bit " + str(bit),newimg)
     cv.waitKey(0)
     cv.destroyAllWindows()
 except:
