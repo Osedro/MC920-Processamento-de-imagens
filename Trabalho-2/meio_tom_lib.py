@@ -7,7 +7,7 @@ def floid_stainberg_1(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Floid Stainberg 1:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 1:",format(100*y/len(f),'.2f'),"%")
         for x in range(len(f[y])):
             for c in range(len(f[y][x])):
 
@@ -47,7 +47,7 @@ def floid_stainberg_2(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Floid Stainberg 2:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 2:",format(100*y/len(f),'.2f'),"%")
         if y%2 == 0:
             for x in range(len(f[y])):
                 for c in range(len(f[y][x])):
@@ -117,7 +117,7 @@ def stevenson_arce_1(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Stevenson Arce 1:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 1:",format(100*y/len(f),'.2f'),"%")
         for x in range(len(f[y])):
             for c in range(len(f[y][x])):
 
@@ -196,7 +196,7 @@ def stevenson_arce_2(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Stevenson Arce 2:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 2:",format(100*y/len(f),'.2f'),"%")
         if y%2 == 0:
             for x in range(len(f[y])):
                 for c in range(len(f[y][x])):
@@ -346,7 +346,7 @@ def burkes_1(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Burkes 1:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 1:",format(100*y/len(f),'.2f'),"%")
         for x in range(len(f[y])):
             for c in range(len(f[y][x])):
 
@@ -399,7 +399,7 @@ def burkes_2(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Burkes 2:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 2:",format(100*y/len(f),'.2f'),"%")
         if y%2 == 0:
             for x in range(len(f[y])):
                 for c in range(len(f[y][x])):
@@ -499,7 +499,7 @@ def sierra_1(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Sierra 1:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 1:",format(100*y/len(f),'.2f'),"%")
         for x in range(len(f[y])):
             for c in range(len(f[y][x])):
 
@@ -567,7 +567,7 @@ def sierra_2(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Sierra 2:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 2:",format(100*y/len(f),'.2f'),"%")
         if y%2 == 0:
             for x in range(len(f[y])):
                 for c in range(len(f[y][x])):
@@ -696,7 +696,7 @@ def stucki_1(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Stucki 1:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 1:",format(100*y/len(f),'.2f'),"%")
         for x in range(len(f[y])):
             for c in range(len(f[y][x])):
 
@@ -774,7 +774,7 @@ def stucki_2(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Stucki 2:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 2:",format(100*y/len(f),'.2f'),"%")
         if y%2 == 0:
             for x in range(len(f[y])):
                 for c in range(len(f[y][x])):
@@ -924,7 +924,7 @@ def jarvis_judice_ninke_1(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Jarvis, Judice e Ninke 1:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 1:",format(100*y/len(f),'.2f'),"%")
         for x in range(len(f[y])):
             for c in range(len(f[y][x])):
 
@@ -1002,7 +1002,7 @@ def jarvis_judice_ninke_2(img):
     g = np.zeros(f.shape)
 
     for y in range(len(f)):
-        print("Jarvis, Judice e Ninke 2:",format(100*y/len(f),'.2f'),"%")
+        print("Processando pelo metodo 2:",format(100*y/len(f),'.2f'),"%")
         if y%2 == 0:
             for x in range(len(f[y])):
                 for c in range(len(f[y][x])):
