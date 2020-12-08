@@ -15,25 +15,23 @@ imgpath = "img/" + imgname
 
 try:
     img = cv.imread(imgpath,0)
+
     imgname = imgname.split('.')[0]+'.png'
 
     cv.imshow("Imagem original",img)
 
-    
 
-    n = 15
+    for n in range(5,21,3):
 
-    for k1 in range(-10,0,1):
-        k = k1/10
-        newimg = limi.niblak(img,n,k)*255
-
-        cv.imshow("Imagem Niblak com n = " + str(n) + " e k = " + str(k),newimg)
+        newimg = limi.contraste(img,n)*255
 
         aux = np.sum(newimg)/(img.shape[0]*img.shape[1])
-        print("Fracao de pixels pretos utilizando metodo de Niblak com K="+str(k)+":",format(100*aux/255,'.2f'),"%")
+        print("Fracao de pixels pretos utilizando metodo do Contraste com n="+str(n)+":",format(100*aux/255,'.2f'),"%")
 
-        cv.imwrite('resultados/niblak_k='+str(k)+'_'+imgname,newimg)
+        cv.imwrite('resultados/contraste_n='+str(n)+'_'+imgname,newimg)
 
+        cv.imshow("Imagem pelo metodo do contraste com n="+str(n),newimg)
+    
     cv.waitKey(0)
     cv.destroyAllWindows()
 

@@ -265,9 +265,13 @@ def bernsen(img,n):
             
     return newimg.astype(np.uint8)
 
-def plotar_histograma(img,T):
+def plotar_histograma_t(img,T):
     plt.hist(img.ravel(),256,[0,256]) 
     plt.axvline(x=T,ymax=np.max(cv.calcHist([img],[0],None, [256], [0,256])), color = "red")
+    plt.show()
+
+def plotar_histograma(img):
+    plt.hist(img.ravel(),256,[0,256]) 
     plt.show()
 
 def limi_global(img, T):
@@ -303,7 +307,6 @@ def ridler_calvard(img):
         mi2 = mi2/soma
         
         dif = T - (mi1+mi2)/2
-        print(dif)
         T = int((mi1+mi2)/2)
 
     return T
