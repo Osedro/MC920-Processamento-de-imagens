@@ -6,10 +6,13 @@ import time
 
 inicio = time.time()
 
-imgname = "hino-0-monalisa.png"
-imgpath = "res/" + imgname
+imgname = sys.argv[1]  
+imgpath = "imgs_codificadas/" + imgname
 
-plano_bits = 0
+try:
+    plano_bits = int(sys.argv[2]) 
+except:
+    plano_bits = 0
 
 img = cv.imread(imgpath)
 
@@ -34,68 +37,15 @@ for bit in range(8):
     aux = ((imgR/(2**bit))%2).astype(np.uint8)
     planosR.append(aux)
 
-tammsg = 0
+tipo = est.get_tipo(planosB,planosG,planosR,plano_bits)
 
-plano = 0
-linha = 0
-coluna = 0
+if tipo == "txt":
+    est.decodificar_txt(planosB,planosG,planosR,plano_bits,imgname)
+elif tipo == "png":
+    est.decodificar_png(planosB,planosG,planosR,plano_bits,imgname)
+else:
+    print("Tipo de mensagem não identificada :(")
 
-# ESTRAÇÃO DO TAMANHO DA MENSAGEM, POSICIONADO NOS 4 PRIMEIROS BYTES CODIFICADOS
-for i in range(32):
-    if plano%3 == 0:
-        tammsg = tammsg + (2**i)*planosB[plano_bits][linha][coluna]
-    elif plano%3 == 1:
-        tammsg = tammsg + (2**i)*planosG[plano_bits][linha][coluna]
-    else:
-        tammsg = tammsg + (2**i)*planosR[plano_bits][linha][coluna]
-        coluna = coluna + 1             
-    
-    plano = plano + 1
+fim = time.time()
 
-    if coluna == largura:
-        coluna = 0
-        linha = linha + 1
-
-plano = 0
-linha = 0
-coluna = 0
-modulo = 0
-msgbytes = []
-
-for i in range(tammsg+4):
-    byte = 0
-    for bit in range(8):
-        if plano%3 == 0:
-            byte = int(byte + (2**bit)*planosB[plano_bits][linha][coluna])
-        elif plano%3 == 1:
-            byte = int(byte + (2**bit)*planosG[plano_bits][linha][coluna])
-        else:
-            byte = int(byte + (2**bit)*planosR[plano_bits][linha][coluna])
-            coluna = coluna + 1             
-        
-        plano = plano + 1
-
-        if coluna == largura:
-            coluna = 0
-            linha = linha + 1
-    
-    byte = byte.to_bytes(1,'big')
-    msgbytes.append(byte)
-
-del(msgbytes[0])
-del(msgbytes[0])
-del(msgbytes[0])
-del(msgbytes[0])
-msgbytes = b''.join(msgbytes)
-
-msgfinal = msgbytes.decode("utf-8")
-
-print(msgfinal)
-
-arqname = "msg_enc/" + imgname.split(".")[0] + "-mensagem.txt"
-
-arquivo = open(arqname,'a')
-
-arquivo.write(msgfinal)
-
-arquivo.close()
+print("Tempo de execucao:",fim - inicio,"s")
