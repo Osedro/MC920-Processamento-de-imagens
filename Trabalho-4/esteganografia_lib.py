@@ -103,7 +103,6 @@ def decodificar_txt(planosB,planosG,planosR,plano_bits,imgname):
     plano = 0
     linha = 0
     coluna = 0
-    modulo = 0
     msgbytes = []
 
     for i in range(tammsg+5):
@@ -135,7 +134,7 @@ def decodificar_txt(planosB,planosG,planosR,plano_bits,imgname):
 
     msgfinal = msgbytes.decode("utf-8")
 
-    arqname = "msgs_encontradas/" + imgname.split(".")[0] + "-mensagem.txt"
+    arqname = "msgs_encontradas/msg-" + imgname.split(".")[0] + ".txt"
 
     arquivo = open(arqname,'w')
     arquivo.write(msgfinal)
